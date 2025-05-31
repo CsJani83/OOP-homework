@@ -1,7 +1,7 @@
 from autokolcsonzo import Autokolcsonzo
 
 def menu():
-    print("\nAutókölcsönző Rendszer")
+    print("\nOOP-Autókölcsönző")
     print("1. Autó bérlése")
     print("2. Bérlés lemondása")
     print("3. Bérlések listázása")
