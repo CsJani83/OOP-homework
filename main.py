@@ -20,7 +20,7 @@ while True:
         print("\nElérhető autók:")
         autok = kolcsonzo.autok
         for i, auto in enumerate(autok, 1):
-            foglalt = "Nem bérelhető" if any(berles[0] == auto.rendszam for berles in kolcsonzo.berlesek.values()) else "Bérelhető"
+            foglalt = "Nem bérelhető" if any(berles.auto.rendszam == auto.rendszam for berles in kolcsonzo.berleskezelo.berlesek) else "Bérelhető"
             print(f"{i}. {auto.marka} - {auto.rendszam} ({auto.get_auto_tipus()}) - {auto.berleti_dij} Ft/nap - {foglalt}")
 
         # Autó kiválasztása számmal
