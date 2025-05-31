@@ -10,7 +10,7 @@ class Autokolcsonzo:
             Szemelyauto("SZA-002", "VW", 10000),
             Teherauto("TEA-001", "Iveco", 15000)
         ]
-        self.berleskezelo = BerlesKezelo()  # Most már az új osztály tárolja a bérléseket
+        self.berleskezelo = BerlesKezelo(self.autok)  # Most átadjuk az autók listáját!
 
     def berel_auto(self, berlo, rendszam, datum, napok_szama):
         auto = next((a for a in self.autok if a.rendszam == rendszam), None)
