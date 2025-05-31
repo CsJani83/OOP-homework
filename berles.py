@@ -14,8 +14,8 @@ class Berles:
 
 class BerlesKezelo:
     def __init__(self, autok):
-        self.berlesek = []  # Minden bérlés egy listában tárolódik
-        self.betolt_indulo_berlesek(autok)  # Induláskor betöltjük az előre megadott bérléseket
+        self.berlesek = [] 
+        self.betolt_indulo_berlesek(autok)
 
     def betolt_indulo_berlesek(self, autok):
         """
