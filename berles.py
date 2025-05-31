@@ -1,3 +1,6 @@
+from szemelyauto import Szemelyauto
+from teherauto import Teherauto
+
 class Berles:
     def __init__(self, berlo, auto, datum, napok_szama):
         self.berlo = berlo
@@ -9,18 +12,32 @@ class Berles:
     def __str__(self):
         return f"{self.berlo} bérelte: {self.auto.rendszam} ({self.auto.get_auto_tipus()}) - {self.datum} ({self.napok_szama} nap) - Ár: {self.ar} Ft"
 
-
 class BerlesKezelo:
-    def __init__(self):
+    def __init__(self, autok):
         self.berlesek = []  # Minden bérlés egy listában tárolódik
+        self.betolt_indulo_berlesek(autok)  # Induláskor betöltjük az előre megadott bérléseket
+
+    def betolt_indulo_berlesek(self, autok):
+        """
+        Előre meghatározott bérlések betöltése.
+        """
+        auto_sza001 = next((a for a in autok if a.rendszam == "SZA-001"), None)
+        auto_sza002 = next((a for a in autok if a.rendszam == "SZA-002"), None)
+        auto_tea001 = next((a for a in autok if a.rendszam == "TEA-001"), None)
+
+        if auto_sza001 and auto_sza002 and auto_tea001:
+            self.berlesek.extend([
+                Berles("Kiss Ádám", auto_sza001, "2025-07-01", 1),
+                Berles("Nagy Éva", auto_sza002, "2025-07-02", 2),
+                Berles("Ádám Éva", auto_sza002, "2025-07-04", 1),
+                Berles("Gipsz Jakab", auto_tea001, "2025-07-01", 1)
+            ])
 
     def uj_berles(self, berlo, auto, datum, napok_szama):
-        # Ellenőrzés: Van-e már foglalás ezen a napon erre az autóra?
         for berles in self.berlesek:
             if berles.auto.rendszam == auto.rendszam and berles.datum == datum:
                 return "Az autó már foglalt ezen a napon!"
 
-        # Új bérlés hozzáadása
         uj_berles = Berles(berlo, auto, datum, napok_szama)
         self.berlesek.append(uj_berles)
         return f"Sikeres foglalás! {uj_berles}"
